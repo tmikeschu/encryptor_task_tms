@@ -20,10 +20,4 @@ class Encryptor
     end
 end
 
-a_to_z_cap = ("A".."Z").to_a
-a_to_z_low = ("a".."z").to_a
-zero_to_nine = (1..9).to_a
-kitchen_sink = (" ".."z").to_a
-a_to_z_cap.rotate(1)
-a_to_z_cap.rotate(5)
 
