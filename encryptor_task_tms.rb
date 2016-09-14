@@ -18,4 +18,9 @@ class Encryptor
         post_encryption = letters.collect{ |l| cipher[l.downcase] }
         post_encryption.join
     end
+    def decrypt(string)
+        letters = string.split("")
+        post_decryption = letters.collect{ |l| cipher[l.downcase] }
+        post_decryption.join.capitalize
+    end
 end
