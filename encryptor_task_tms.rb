@@ -49,12 +49,5 @@ end
 e = Encryptor.new
 puts e.crack("f w)0/6X0// -6C6` ''46j$( ")
 
-=begin
-(" ".."z").to_a.size.times do |attempt|
-    puts e.decrypt("f w)0/6X0// -6C6` ''46j$( ", attempt) + ": #{attempt}"
-end
-(" ".."z").to_a.size.times do |attempt|
-    puts e.decrypt("\\qmz&%,N&%%q#,9,Vqxx*,`uyq", attempt) + ": #{attempt}"
-end
-=end
+
 
