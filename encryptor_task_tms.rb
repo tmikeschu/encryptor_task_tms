@@ -26,5 +26,35 @@ class Encryptor
         output.write(encrypted)
         output.close
     end
+    def decrypt_file(filename, rotation)
+        input = File.open("#{filename}", "r")
+        input_message = input.read; input.rewind
+        decrypted = decrypt(input_message, rotation)
+        output = File.new("#{filename.gsub("encrypted", "decrypted")}", "w")
+        output.write(decrypted)
+        output.close
+    end
+
+    def supported_characters
+        (" ".."z").to_a
+    end
+
+    def crack(message)
+        supported_characters.count.times.collect do |attempt|
+            decrypt(message, attempt)
+        end
+    end
 end
+
+e = Encryptor.new
+puts e.crack("f w)0/6X0// -6C6` ''46j$( ")
+
+=begin
+(" ".."z").to_a.size.times do |attempt|
+    puts e.decrypt("f w)0/6X0// -6C6` ''46j$( ", attempt) + ": #{attempt}"
+end
+(" ".."z").to_a.size.times do |attempt|
+    puts e.decrypt("\\qmz&%,N&%%q#,9,Vqxx*,`uyq", attempt) + ": #{attempt}"
+end
+=end
 
