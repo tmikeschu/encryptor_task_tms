@@ -19,21 +19,12 @@ class Encryptor
         post_decryption.join.capitalize
     end
     def encrypt_file(filename, rotation)
-        #Create the file handle to the input file
         input = File.open("#{filename}", "r")
-        #Read the text of the input file
-        input_message = p input.read
-        input.rewind
-        #Encrypt the text
+        input_message = input.read; input.rewind
         encrypted = encrypt(input_message, rotation)
-        #Create a name for the output file
-        #Create an output file handle
         output = File.new("#{filename}.encrypted", "w")
-        #Write out the text
         output.write(encrypted)
-        #Close the file
         output.close
     end
 end
-
 
