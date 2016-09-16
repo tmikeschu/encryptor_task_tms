@@ -1,4 +1,5 @@
 class Encryptor
+=begin
     @password = "zyx321"
     puts "Enter password: "
     user_password = gets.chomp
@@ -7,13 +8,13 @@ class Encryptor
     else
         private
     end
-
+=end
     def cipher(rotation)
         characters = (' '..'z').to_a
         rotated_characters = characters.rotate(rotation)
         Hash[characters.zip(rotated_characters)]
     end
-    def encrypt_letter(letter, rotation = 13) 
+    def encrypt_letter(letter, rotation) 
         cipher_for_rotation = cipher(rotation)
         cipher_for_rotation[letter]
     end
@@ -22,7 +23,7 @@ class Encryptor
         post_encryption = letters.collect{ |l| encrypt_letter(l, rotation) }
         post_encryption.join
     end
-    def decrypt(string, rotation)
+    def decrypt(string, rotation = 13)
         letters = string.split("")
         post_decryption = letters.collect{ |l| encrypt_letter(l, -(rotation) ) }
         post_decryption.join
@@ -43,11 +44,9 @@ class Encryptor
         output.write(decrypted)
         output.close
     end
-
     def supported_characters
         (" ".."z").to_a
     end
-
     def crack(message)
         supported_characters.count.times.collect do |attempt|
             decrypt(message, attempt)
@@ -67,7 +66,24 @@ class Encryptor
         user_key = gets.chomp.to_i
         puts decrypt(message_encryp, user_key)
     end
+    def rotation_triple
+        rot_arr = [3, 13, 23]
+        return rot_arr.first
+        rot_arr.rotate!
+    end
+    def encrypt_advanced(string)
+        letters = string.split("")
+        post_encryption = letters.collect do |l, r|
+            rotation = [3, 13, 23].to_a
+            r = rotation.first
+            rotation.rotate!
+            encrypt_letter(l, r)
+        end
+        post_encryption.join
+    end
+
 end
+
 
 
 
