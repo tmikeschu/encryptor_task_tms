@@ -11,12 +11,12 @@ class Encryptor
     def encrypt(string, rotation = 13)
         letters = string.split("")
         post_encryption = letters.collect{ |l| encrypt_letter(l, rotation) }
-        post_encryption.join.capitalize
+        post_encryption.join
     end
     def decrypt(string, rotation)
         letters = string.split("")
         post_decryption = letters.collect{ |l| encrypt_letter(l, -(rotation) ) }
-        post_decryption.join.capitalize
+        post_decryption.join
     end
     def encrypt_file(filename, rotation)
         input = File.open("#{filename}", "r")
@@ -44,10 +44,25 @@ class Encryptor
             decrypt(message, attempt)
         end
     end
+    def encrypt_real_time
+        puts "Enter your message: "
+        message_orig = gets.chomp
+        print "Enter your preferred encryption number > "
+        user_rot = gets.chomp.to_i
+        puts encrypt(message_orig, user_rot)
+    end
+    def decrypt_real_time
+        puts "Enter encrypted message: "
+        message_encryp = gets.chomp
+        print "What is the decryption key? > "
+        user_key = gets.chomp.to_i
+        puts decrypt(message_encryp, user_key)
+    end
 end
 
 e = Encryptor.new
 puts e.crack("f w)0/6X0// -6C6` ''46j$( ")
+
 
 
 
