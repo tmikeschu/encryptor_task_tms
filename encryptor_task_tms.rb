@@ -1,4 +1,13 @@
 class Encryptor
+    @password = "zyx321"
+    puts "Enter password: "
+    user_password = gets.chomp
+    if user_password == @password
+        puts "Proceed."
+    else
+        private
+    end
+
     def cipher(rotation)
         characters = (' '..'z').to_a
         rotated_characters = characters.rotate(rotation)
@@ -60,8 +69,6 @@ class Encryptor
     end
 end
 
-e = Encryptor.new
-puts e.crack("f w)0/6X0// -6C6` ''46j$( ")
 
 
 
