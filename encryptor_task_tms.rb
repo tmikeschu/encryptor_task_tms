@@ -1,5 +1,4 @@
 class Encryptor
-=begin
     @password = "zyx321"
     puts "Enter password: "
     user_password = gets.chomp
@@ -8,7 +7,6 @@ class Encryptor
     else
         private
     end
-=end
     def cipher(rotation)
         characters = (' '..'z').to_a
         rotated_characters = characters.rotate(rotation)
@@ -71,17 +69,29 @@ class Encryptor
         return rot_arr.first
         rot_arr.rotate!
     end
+    rotate_proc = Proc.new do |n|
+        
+    end
     def encrypt_advanced(string)
+        rotation = [3, 13, 23]
         letters = string.split("")
-        post_encryption = letters.collect do |l, r|
-            rotation = [3, 13, 23].to_a
-            r = rotation.first
+        post_encryption = []
+        letters.collect do |l|
+            post_encryption << encrypt_letter(l, rotation[0])
             rotation.rotate!
-            encrypt_letter(l, r)
         end
         post_encryption.join
     end
-
+    def decrypt_advanced(string)
+        rotation = [3, 13, 23]
+        letters = string.split("")
+        post_encryption = []
+        letters.collect do |l|
+            post_encryption << encrypt_letter(l, -(rotation[0]))
+            rotation.rotate!
+        end
+        post_encryption.join
+    end
 end
 
 
